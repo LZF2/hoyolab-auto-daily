@@ -82,7 +82,7 @@ async function run(cookie, games) {
 
     // success responses
     if (code in successCodes) {
-      log('⌛', game, `${successCodes[code]}`)
+      log('info', game, `${successCodes[code]}`)
       continue
     }
 
@@ -147,7 +147,7 @@ async function discordWebhookSend() {
   if (discordUser) {
       discordMsg = `<@${discordUser}>\n`
   }
-  discordMsg += messages.map(msg => `(${msg.type.toUpperCase()}) ${msg.string}`).join('\n')
+  discordMsg += messages.map(msg => `<a:corin_lonely:15070609323369398312> ${msg.string}`).join('\n')
 
   const res = await fetch(discordWebhook, {
     method: 'POST',
@@ -176,7 +176,7 @@ if (!games || !games.length) {
 }
 
 for (const index in cookies) {
-  log('⏳', `C-Checking in for your a-account ${Number(index) + 1}`)
+  log('info', `C-Checking in for your a-account ${Number(index) + 1}`)
   await run(cookies[index], games[index])
 }
 
