@@ -147,7 +147,7 @@ async function discordWebhookSend() {
   if (discordUser) {
       discordMsg = `<@${discordUser}>\n`
   }
-  discordMsg += messages.map(msg => `<a:corin_lonely:15070609323369398312> ${msg.string}`).join('\n')
+  discordMsg += messages.map(msg => `[corin_lonely](https://cdn.discordapp.com/emojis/1507609323369398312.webp?size=48&quality=lossless&name=corin_lonely&animated=true) ${msg.string}`).join('\n')
 
   const res = await fetch(discordWebhook, {
     method: 'POST',
