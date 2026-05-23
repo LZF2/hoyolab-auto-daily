@@ -148,6 +148,7 @@ async function discordWebhookSend() {
       discordMsg = `<@${discordUser}>\n`
   }
   discordMsg += messages.map(msg => `${msg.string}`).join('\n')
+  discordMsg += messages.map('\nhttps://cdn.discordapp.com/emojis/1507609323369398312.webp?size=48&quality=lossless&name=corin_lonely&animated=true')
 
   const res = await fetch(discordWebhook, {
     method: 'POST',
@@ -165,25 +166,6 @@ async function discordWebhookSend() {
   }
 
   log('error', 'Error sending message to Discord webhook, please check URL and permissions')
-
-  let discordMsg = "[corin_lonely](https://cdn.discordapp.com/emojis/1507609323369398312.webp?size=48&quality=lossless&name=corin_lonely&animated=true)"
-
-  const res = await fetch(discordWebhook, {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify({
-      content: discordMsg
-    })
-  })
-
-  if (res.status === 204) {
-    log('info', 'Successfully sent 2nd message to Discord webhook!')
-    return
-  }
-
-  log('error', 'Error sending 2nd message to Discord webhook, please check URL and permissions')
 }
 
 if (!cookies || !cookies.length) {
