@@ -76,13 +76,13 @@ async function run(cookie, games) {
     const json = await res.json()
     const code = String(json.retcode)
     const successCodes = {
-      '0': 'Successfully checked in!',
-      '-5003': 'Already checked in for today',
+      '0': 'S-Success!',
+      '-5003': 'P-Proxy already checked in for today!',
     }
 
     // success responses
     if (code in successCodes) {
-      log('info', game, `${successCodes[code]}`)
+      log('⌛', game, `${successCodes[code]}`)
       continue
     }
 
@@ -176,7 +176,7 @@ if (!games || !games.length) {
 }
 
 for (const index in cookies) {
-  log('info', `-- CHECKING IN FOR ACCOUNT ${Number(index) + 1} --`)
+  log('⏳', `C-Checking in for your a-account ${Number(index) + 1}`)
   await run(cookies[index], games[index])
 }
 
